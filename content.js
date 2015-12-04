@@ -52,6 +52,21 @@ function loadCoordinates(coordinate)
     }
 }
 
+function loadVisibility()
+{
+    wm_cookie = getCookie("watermark_visibility");
+	
+    if(wm_cookie.length > 0)
+    {
+	return wm_cookie; 
+    }
+
+    else
+    {
+	return "visible";
+    }
+}
+
 function addWaterMark()
 {
     var waterMark = document.createElement("div");
@@ -59,8 +74,9 @@ function addWaterMark()
     waterMark.style.width = "150px";
     waterMark.style.height = "108px";
     waterMark.style.position = "fixed";
-    waterMark.style.left = loadCoordinates("x");"85%";
-    waterMark.style.top = loadCoordinates("y");"15%";
+    waterMark.style.left = loadCoordinates("x");
+    waterMark.style.top = loadCoordinates("y");
+    waterMark.style.display = loadVisibility();
     waterMark.style.backgroundImage = "url('https://drive.google.com/uc?export=view&id=0B_LWN32gPlSXZ0tPelVXbXJ4cXc')";
     waterMark.style.backgroundColor = "blue";
     waterMark.style.backgroundSize = "contain";
@@ -170,10 +186,6 @@ function drop()
     }
 }
 
-function parseCoordinates()
-{
-    
-}
 
 addWaterMark();
 document.onmousemove = move_elem;
